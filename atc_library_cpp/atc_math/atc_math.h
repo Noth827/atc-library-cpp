@@ -12,11 +12,11 @@ using lint = long long;
 struct atc_math
 {
     // @brief 約数列挙をする
-    static vector<pair<long long, long long>> prime_factorize(long long n)  
+    static vector<pair<lint, lint>> prime_factorize(lint n)  
     {  
-        vector<pair<long long, long long>> res;  
+        vector<pair<lint, lint>> res;  
   
-        for (long long p = 2; p * p <= n; ++p)  
+        for (lint p = 2; p * p <= n; ++p)  
         {  
             if (n % p != 0)  
             {  
@@ -73,17 +73,17 @@ struct atc_math
     }
 
     // @brief 素数判定用ベクタをエラトステネスの篩を利用して作成する
-    static vector<bool> make_eratosthenes(const long long n)
+    static vector<bool> make_eratosthenes(const lint n)
     {
         vector<bool> is_prime(n + 1, true);
  
         is_prime[0] = is_prime[1] = false;
  
-        for (long long p = 2; p <= n / 2; p++)
+        for (lint p = 2; p <= n / 2; p++)
         {
             if (!is_prime[p]) continue;
  
-            for (long long q = p * 2; q <= n; q += p)
+            for (lint q = p * 2; q <= n; q += p)
             {
                 is_prime[q] = false;
             }

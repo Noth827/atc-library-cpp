@@ -67,6 +67,7 @@ struct atc_math
         return gcd(b, a % b);
     }
 
+    // @brief 最小公倍数
     static lint lcm(const lint a, const lint b)
     {
         return a / gcd(a, b) * b;
@@ -90,5 +91,38 @@ struct atc_math
         }
  
         return is_prime;
+    }
+
+    // @brief フェルマーの小定理を利用して、逆元のmodを求める
+    static lint get_division(const lint a, const lint b, const lint mod)
+    {
+        return a * power(b, mod - 2, mod) % mod;
+    }
+
+    // @brief nCr % modを求める
+    static lint get_combination(const lint n, const lint r, const lint mod)
+    {
+        // 分子
+        lint numerator = 1;
+        for (int i = 1; i <= n; i++)
+        {
+            numerator *= i;
+            numerator %= mod;
+        }
+
+        // 分母
+        lint denominator = 1;
+        for (int i = 1; i <= r; i++)
+        {
+            denominator *= i;
+            denominator %= mod;
+        }
+        for (int i = 1; i <= n - r; i++)
+        {
+            denominator *= i;
+            denominator %= mod;
+        }
+
+        return get_division(numerator, denominator, mod);
     }
 };

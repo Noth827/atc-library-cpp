@@ -1,45 +1,62 @@
 ﻿#pragma once
 #include <algorithm>
-#include <iostream>
-#include <string>
 #include <vector>
-#include <map>
 #include <unordered_map>
 
 using namespace std;
 using lint = long long;
 
-struct atc_math
+namespace acl_library_math
 {
-    // @brief 約数列挙をする
-    static vector<pair<lint, lint>> prime_factorize(lint n)  
-    {  
-        vector<pair<lint, lint>> res;  
-  
-        for (lint p = 2; p * p <= n; ++p)  
-        {  
-            if (n % p != 0)  
-            {  
-                continue;  
-            }  
-  
-            int e = 0;  
-            while (n % p == 0)  
-            {  
-                e++;  
-                n /= p;  
-            }  
-  
-            res.emplace_back(p, e);  
-        }  
-  
-        if (n != 1)  
-        {  
-            res.emplace_back(n, 1);  
-        }  
-        return res;  
+    template<class T> inline bool ch_min(T& a, T b)
+    {
+        if (a > b)
+        {
+            a = b;
+            return true;
+        }
+        return false;    
+    }
+
+    template<class T> inline bool ch_max(T& a, T b)
+    {
+        if (a < b)
+        {
+            a = b;
+            return true;
+        }
+        return false;
     }
     
+    // @brief 約数列挙をする
+    static vector<pair<lint, lint>> prime_factorize(lint n)
+    {
+        vector<pair<lint, lint>> res;
+
+        for (lint p = 2; p * p <= n; ++p)
+        {
+            if (n % p != 0)
+            {
+                continue;
+            }
+
+            int e = 0;
+            while (n % p == 0)
+            {
+                e++;
+                n /= p;
+            }
+
+            res.emplace_back(p, e);
+        }
+
+        if (n != 1)
+        {
+            res.emplace_back(n, 1);
+        }
+        return res;
+    }
+
     // @brief 累乗を繰り返し二乗法を利用して計算する
     // @param a: base, b: exponent, mod: mod
     static lint power(const lint a, const lint b, const lint mod, const lint limit = 30)
@@ -77,19 +94,19 @@ struct atc_math
     static vector<bool> make_eratosthenes(const lint n)
     {
         vector<bool> is_prime(n + 1, true);
- 
+
         is_prime[0] = is_prime[1] = false;
- 
+
         for (lint p = 2; p <= n / 2; p++)
         {
             if (!is_prime[p]) continue;
- 
+
             for (lint q = p * 2; q <= n; q += p)
             {
                 is_prime[q] = false;
             }
         }
- 
+
         return is_prime;
     }
 
@@ -125,4 +142,4 @@ struct atc_math
 
         return get_division(numerator, denominator, mod);
     }
-};
+}

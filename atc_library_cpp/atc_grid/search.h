@@ -23,7 +23,7 @@ namespace atc_library_grid
 
 
         // @brief 特定の文字列が存在する位置を判定
-        // @return 位置のlist,なければ空list
+        // @return 存在した各位置のvector,なければ空のvector
         vector<pair<lint, lint>> find_string_in_grid(const vector<string>& s, const string& target,
                                                    const lint direction_amount = 8)
         {

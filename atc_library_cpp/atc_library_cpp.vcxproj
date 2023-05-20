@@ -157,6 +157,7 @@
     <ClCompile Include="atc_graph\dfs.cpp" />
     <ClCompile Include="atc_graph\bfs.cpp" />
     <ClCompile Include="atc_graph\minimum_spanning_tree.cpp" />
+    <ClCompile Include="atc_grid\search.cpp" />
     <ClCompile Include="atc_math\atc_math.cpp" />
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="atc_graph\dfs.h" />
     <ClInclude Include="atc_graph\bfs.h" />
     <ClInclude Include="atc_graph\minimum_spanning_tree.h" />
+    <ClInclude Include="atc_grid\search.h" />
     <ClInclude Include="atc_math\atc_math.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

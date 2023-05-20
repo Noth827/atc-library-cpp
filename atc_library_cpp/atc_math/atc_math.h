@@ -8,17 +8,19 @@ using lint = long long;
 
 namespace acl_library_math
 {
-    template<class T> inline bool ch_min(T& a, T b)
+    template <class T>
+    bool ch_min(T& a, T b)
     {
         if (a > b)
         {
             a = b;
             return true;
         }
-        return false;    
+        return false;
     }
 
-    template<class T> inline bool ch_max(T& a, T b)
+    template <class T>
+    bool ch_max(T& a, T b)
     {
         if (a < b)
         {
@@ -27,7 +29,7 @@ namespace acl_library_math
         }
         return false;
     }
-    
+
     // @brief 約数列挙をする
     static vector<pair<lint, lint>> prime_factorize(lint n)
     {
@@ -78,6 +80,7 @@ namespace acl_library_math
     }
 
     // @brief 最大公約数をユークリッドの互除法を利用して計算する
+    // @order O(log max(a, b))
     static lint gcd(const lint a, const lint b)
     {
         if (b == 0) return a;
@@ -91,6 +94,7 @@ namespace acl_library_math
     }
 
     // @brief 素数判定用ベクタをエラトステネスの篩を利用して作成する
+    // @order O(n log log n)
     static vector<bool> make_eratosthenes(const lint n)
     {
         vector<bool> is_prime(n + 1, true);

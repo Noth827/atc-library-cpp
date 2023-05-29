@@ -9,38 +9,20 @@ using lint = long long;
 namespace acl_library_math
 {
     template <class T>
-    bool ch_min(T& a, T b)
-    {
-        if (a > b)
-        {
-            a = b;
-            return true;
-        }
-        return false;
-    }
+    bool chmin(T& a, T b) { return a > b ? (a = b, true) : false; }
 
     template <class T>
-    bool ch_max(T& a, T b)
-    {
-        if (a < b)
-        {
-            a = b;
-            return true;
-        }
-        return false;
-    }
+    bool chmax(T& a, T b) { return a < b ? (a = b, true) : false; }
 
     // @brief 約数列挙をする
+    // @order O(sqrt(n))
     static vector<pair<lint, lint>> prime_factorize(lint n)
     {
         vector<pair<lint, lint>> res;
 
         for (lint p = 2; p * p <= n; ++p)
         {
-            if (n % p != 0)
-            {
-                continue;
-            }
+            if (n % p != 0) continue;
 
             int e = 0;
             while (n % p == 0)
@@ -52,11 +34,22 @@ namespace acl_library_math
             res.emplace_back(p, e);
         }
 
-        if (n != 1)
-        {
-            res.emplace_back(n, 1);
-        }
+        if (n != 1) res.emplace_back(n, 1);
         return res;
+    }
+
+    // @brief nまでの整数のうち、n=xyで表せるような(x,y)の個数を求める
+    static vector<lint> counts_of_xy(const lint n)
+    {
+        vector<lint> num(n + 1, 0);
+        for (lint x = 1; x <= n; x++)
+        {
+            for (lint y = 1; x * y <= n; y++)
+            {
+                num[x * y]++;
+            }
+        }
+        return num;
     }
 
     // @brief 累乗を繰り返し二乗法を利用して計算する

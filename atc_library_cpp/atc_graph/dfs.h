@@ -6,22 +6,22 @@ using graph = vector<vector<int>>;
 
 namespace acl_library_graph
 {
+    int n = 200000;
+    bool is_seen[n + 10];
+    graph g(n);
+
     struct dfs
     {
         // @brief seenを書き換えながらDFSをする
         // @param g: graph, seen[]: 探索済みかどうか, vertex: 頂点
-        static void dfs_basic(const graph& g, bool is_seen[], const int vert)
+        static void dfs_basic(const int v)
         {
-            is_seen[vert] = true;
+            is_seen[v] = true;
 
-            for (const int next_v : g[vert])
+            for (const int nv : g[v])
             {
-                if (is_seen[next_v])
-                {
-                    continue;
-                }
-
-                dfs_basic(g, is_seen, next_v);
+                if (is_seen[nv]) continue;
+                dfs_basic(nv);
             }
         }
 

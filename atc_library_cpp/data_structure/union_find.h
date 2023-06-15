@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace atc_library_graph
+namespace atc_library_data_structure
 {
     // @brief Union-Find木
     // @original https://github.com/atcoder/ac-library/blob/master/atcoder/dsu
